@@ -4,7 +4,7 @@ function [UU,V,A,W,Z,iter,obj] = algo_qp(X,Y,lambda,d,numanchor)
 % X      : n*di
 
 %% initialize
-maxIter = 50 ; % the number of iterations
+maxIter = 20 ; % the number of iterations
 
 m = numanchor;
 numclass = length(unique(Y));
@@ -75,7 +75,7 @@ end
     %% optimize alpha
     M = zeros(numview,1);
     for iv = 1:numview
-        M(iv) = norm( X{iv} - W{iv} * A * Z,'fro')^2;
+        M(iv) = norm( X{iv} - W{iv} * A * Z,'fro');
     end
     Mfra = M.^-1;
     Q = 1/sum(Mfra);
